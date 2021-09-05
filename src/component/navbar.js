@@ -85,7 +85,7 @@ export default function Navbar({ onClick, name, role, picture }) {
                           <div className={'block text-white text-left pl-0 hidden sm:block sm:pl-3'}>
                             {/* <h1 className={'font-bold'}>{name}</h1>
                             <span className={'opacity-50'}>{role}</span> */}
-                            <h1 className={'font-bold'}>Ridho</h1>
+                            <h1 className={'font-bold'}>{name}</h1>
                             <span className={'opacity-50'}>Merchant</span>
                           </div>
                         </Menu.Button>

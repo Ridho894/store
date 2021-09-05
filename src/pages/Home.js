@@ -41,6 +41,7 @@ const Home = ({ item }) => {
         <div>
             <Navbar
                 onClick={handleShow}
+                name={'saas'}
             />
             <Modal
                 show={show}
