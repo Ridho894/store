@@ -53,7 +53,8 @@ const Home = ({ item }) => {
         <div>
             <Navbar
                 onClick={handleShow}
-                name={user.email}
+                name={user.username}
+                email={user.email}
                 logout={(e) => handleLogout(e)}
             />
             <Modal

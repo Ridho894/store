@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { MailIcon, LockClosedIcon } from "@heroicons/react/outline";
+import { MailIcon, LockClosedIcon, UserIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 
@@ -8,7 +8,7 @@ function Login(props) {
     const history = useHistory()
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
 
     // const [error, setError] = useState(null);
     // const [loading, setLoading] = useState(false);
@@ -33,8 +33,8 @@ function Login(props) {
 
         dispatch(
             login({
+                username: username,
                 email: email,
-                password: password,
                 loggedIn: true
             })
         )
@@ -48,6 +48,16 @@ function Login(props) {
                 </div>
                 <div className={'h-72 p-9'}>
                     <label className={'block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4'}>
+                        Username<UserIcon className={'w-6 h-6 absolute mt-2 ml-2'} />
+                        <input
+                            className={"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-white-500"}
+                            id="inline-full-name"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
+                    <label className={'block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4'}>
                         Email<MailIcon className={'w-6 h-6 absolute mt-2 ml-2'} />
                         <input
                             className={"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-white-500"}
@@ -57,21 +67,11 @@ function Login(props) {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
-                    <label className={'block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4'}>
-                        Password<LockClosedIcon className={'w-6 h-6 absolute mt-2 ml-2'} />
-                        <input
-                            className={"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-white-500"}
-                            id="inline-full-name"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </label>
                     <div className={'flex justify-center'}>
                         <button className={'bg-white text-gray-800 px-5 rounded mt-8'} type={'submit'}>LOGIN</button>
                     </div>
-                    <div className={'bg-white text-gray-800 text-center rounded mt-8 w-1/2 flex justify-center'}>
-                        <button onClick={() => history.push('/Home')}>Langsung Masuk</button>
+                    <div>
+                        <button onClick={() => history.push('/Home')} className={'bg-white text-gray-800 text-center rounded mt-8 w-1/2 flex justify-center items-center'}>Langsung Masuk</button>
                     </div>
                 </div>
             </form>
