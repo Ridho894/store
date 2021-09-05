@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { MailIcon, LockClosedIcon } from "@heroicons/react/outline";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/userSlice";
+
 function Login(props) {
     const history = useHistory()
 
@@ -22,9 +25,24 @@ function Login(props) {
     const handleLogin = () => {
         props.history.push('/Home');
     }
+
+    const dispatch = useDispatch()
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(
+            login({
+                email: email,
+                password: password,
+                loggedIn: true
+            })
+        )
+    }
+
     return (
         <div className={'bg-gray-700 h-screen justify-center items-center flex'}>
-            <form className={'bg-gray-800 text-white rounded-xl shadow-inner'}>
+            <form className={'bg-gray-800 text-white rounded-xl shadow-inner'} onSubmit={(e) => handleSubmit(e)}>
                 <div className={'flex flex-col items-center pt-5'}>
                     <img alt={'logo'} className={'rounded-full'} src="https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" width={100} height={100} />
                 </div>

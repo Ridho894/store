@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
+import { Provider, useSelector } from 'react-redux';
+import store from './redux/store';
+import { selectUser } from './redux/userSlice';
 
 const SplashScreen = () => {
   return (
@@ -13,24 +16,26 @@ const SplashScreen = () => {
   )
 }
 
-function App() {
-  const [loadingScreen, setLoadingScreen] = useState(true);
+const App = () => {
+  // const [loadingScreen, setLoadingScreen] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoadingScreen(false)
-    }, 1000);
-  }, [loadingScreen]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoadingScreen(false)
+  //   }, 1000);
+  // }, [loadingScreen]);
 
-  if (loadingScreen) return <SplashScreen />
+  // if (loadingScreen) return <SplashScreen />
+
+  const user = useSelector(selectUser)
+
 
   return (
-    <Router>
-      <div>
-        <Route exact path="/" component={Login} />
-        <Route path="/Home" component={Home} />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        {user ? <Home /> : <Login />}
+      </Router>
+    </Provider>
   );
 }
 

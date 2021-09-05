@@ -12,7 +12,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({ onClick, name, role, picture }) {
+export default function Navbar({ onClick, name, role, picture, logout, email }) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -86,7 +86,7 @@ export default function Navbar({ onClick, name, role, picture }) {
                             {/* <h1 className={'font-bold'}>{name}</h1>
                             <span className={'opacity-50'}>{role}</span> */}
                             <h1 className={'font-bold'}>{name}</h1>
-                            <span className={'opacity-50'}>Merchant</span>
+                            <span className={'opacity-50'}>{email}</span>
                           </div>
                         </Menu.Button>
                       </div>
@@ -133,7 +133,7 @@ export default function Navbar({ onClick, name, role, picture }) {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/"
+                                onClick={logout}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'

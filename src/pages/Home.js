@@ -7,6 +7,9 @@ import axios from 'axios';
 import Search from '../component/search';
 import Footer from '../component/footer';
 import Loading from '../component/loading';
+import { useDispatch } from 'react-redux';
+import { logout, selectUser } from '../redux/userSlice';
+import { useSelector } from 'react-redux';
 
 const Home = ({ item }) => {
     const [data, setData] = useState([])
@@ -18,6 +21,15 @@ const Home = ({ item }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleCloseModal = () => setOpen(false);
+
+    const user = useSelector(selectUser)
+
+    const dispatch = useDispatch()
+    const handleLogout = (e) => {
+        e.preventDefault()
+
+        dispatch(logout())
+    }
 
     const url = "https://dev-computerhp6hm.microgen.id/api/products/";
     useEffect(() => {
@@ -41,7 +53,8 @@ const Home = ({ item }) => {
         <div>
             <Navbar
                 onClick={handleShow}
-                name={'saas'}
+                name={user.email}
+                logout={(e) => handleLogout(e)}
             />
             <Modal
                 show={show}
