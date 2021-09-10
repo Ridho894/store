@@ -23,7 +23,7 @@ const Home = ({ item }) => {
     const handleCloseModal = () => setOpen(false);
 
     const user = useSelector(selectUser)
-
+    
     const dispatch = useDispatch()
     const handleLogout = (e) => {
         e.preventDefault()

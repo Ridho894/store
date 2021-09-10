@@ -26,7 +26,7 @@ export default function Modal({ show, onclick }) {
             description: data.description,
             storeId: data.storeId
         })
-        history.go()
+        // history.go()
     }
 
     function handle(e) {
@@ -49,7 +49,7 @@ export default function Modal({ show, onclick }) {
                 open={open}
                 onClose={setOpen}
             >
-                <form className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" onSubmit={(e) => submit(e)}>
+                <form className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" onSubmit={(e) => { submit(e) }}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
